@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/next_icon.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/pause_icon.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/play_next_icon.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/remove_icon.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.189" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />
       </map>
