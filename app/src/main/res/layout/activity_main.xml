@@ -26,6 +26,7 @@
                android:textColor="@color/black"
                android:textAllCaps="false"/>
            <Button
+               android:id="@+id/favouriteBtn"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_weight="1"
@@ -38,6 +39,7 @@
                />
 
            <Button
+               android:id="@+id/playListBtn"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_weight="1"
