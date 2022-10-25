@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import com.cye.audioplayer.databinding.ActivityMainBinding
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +42,15 @@ class MainActivity : AppCompatActivity() {
         binding.playListBtn.setOnClickListener{
             val intent = Intent(this,PlayListActivity::class.java)
             startActivity(intent)
+        }
+        binding.nav.setNavigationItemSelectedListener{
+            when(it.itemId){
+                R.id.navFeedBack->Toast.makeText(baseContext,"FeedBack",Toast.LENGTH_SHORT).show()
+                R.id.navSetting->Toast.makeText(baseContext,"Settings",Toast.LENGTH_SHORT).show()
+                R.id.navAbout->Toast.makeText(baseContext,"About",Toast.LENGTH_SHORT).show()
+                R.id.navExit-> exitProcess(1)
+            }
+            true
         }
     }
 
