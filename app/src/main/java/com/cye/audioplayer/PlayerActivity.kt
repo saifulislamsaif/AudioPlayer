@@ -15,8 +15,9 @@ class PlayerActivity : AppCompatActivity() {
         var mediaPlayer: MediaPlayer? = null
         var repeat: Boolean = false
         var isPlaying: Boolean = false
-         @SuppressLint("StaticFieldLeak")
-         lateinit var binding: ActivityPlayerBinding
+
+        @SuppressLint("StaticFieldLeak")
+        lateinit var binding: ActivityPlayerBinding
     }
 
 
@@ -38,7 +39,9 @@ class PlayerActivity : AppCompatActivity() {
     private fun setLayout() {
         Glide.with(applicationContext)
             .load(musicListPlA[songPosition].artUri)
-            .apply(RequestOptions().placeholder(R.drawable.music_player_icon_slash_screen).centerCrop())
+            .apply(
+                RequestOptions().placeholder(R.drawable.music_player_icon_slash_screen).centerCrop()
+            )
             .into(binding.songImgPA)
         binding.songNamePA.text = musicListPlA[songPosition].title
     }
@@ -81,28 +84,27 @@ class PlayerActivity : AppCompatActivity() {
         isPlaying = false
         mediaPlayer!!.pause()
     }
-    fun setSongPosition(increment: Boolean){
-        if(!PlayerActivity.repeat){
-            if(increment)
-            {
-                if(PlayerActivity.musicListPlA.size - 1 == PlayerActivity.songPosition)
+
+    fun setSongPosition(increment: Boolean) {
+        if (!PlayerActivity.repeat) {
+            if (increment) {
+                if (PlayerActivity.musicListPlA.size - 1 == PlayerActivity.songPosition)
                     PlayerActivity.songPosition = 0
                 else ++PlayerActivity.songPosition
-            }else{
-                if(0 == PlayerActivity.songPosition)
-                    PlayerActivity.songPosition = PlayerActivity.musicListPlA.size-1
+            } else {
+                if (0 == PlayerActivity.songPosition)
+                    PlayerActivity.songPosition = PlayerActivity.musicListPlA.size - 1
                 else --PlayerActivity.songPosition
             }
         }
     }
-    private fun prevNextSong(increment: Boolean){
-        if(increment)
-        {
+
+    private fun prevNextSong(increment: Boolean) {
+        if (increment) {
             setSongPosition(increment = true)
             setLayout()
             createMediaPlayer()
-        }
-        else{
+        } else {
             setSongPosition(increment = false)
             setLayout()
             createMediaPlayer()
