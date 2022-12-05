@@ -13,6 +13,7 @@ class PlayerActivity : AppCompatActivity() {
         lateinit var musicListPlA: ArrayList<Music>
         var songPosition: Int = 0
         var mediaPlayer: MediaPlayer? = null
+        var repeat: Boolean = false
         var isPlaying: Boolean = false
          @SuppressLint("StaticFieldLeak")
          lateinit var binding: ActivityPlayerBinding
@@ -30,6 +31,8 @@ class PlayerActivity : AppCompatActivity() {
             else
                 playMusic()
         }
+        binding.previousBtnPA.setOnClickListener { prevNextSong(increment = false) }
+        binding.nextBtnPA.setOnClickListener { prevNextSong(increment = true) }
     }
 
     private fun setLayout() {
@@ -77,5 +80,32 @@ class PlayerActivity : AppCompatActivity() {
         binding.playPauseBtnPA.setIconResource(R.drawable.play_icon)
         isPlaying = false
         mediaPlayer!!.pause()
+    }
+    fun setSongPosition(increment: Boolean){
+        if(!PlayerActivity.repeat){
+            if(increment)
+            {
+                if(PlayerActivity.musicListPlA.size - 1 == PlayerActivity.songPosition)
+                    PlayerActivity.songPosition = 0
+                else ++PlayerActivity.songPosition
+            }else{
+                if(0 == PlayerActivity.songPosition)
+                    PlayerActivity.songPosition = PlayerActivity.musicListPlA.size-1
+                else --PlayerActivity.songPosition
+            }
+        }
+    }
+    private fun prevNextSong(increment: Boolean){
+        if(increment)
+        {
+            setSongPosition(increment = true)
+            setLayout()
+            createMediaPlayer()
+        }
+        else{
+            setSongPosition(increment = false)
+            setLayout()
+            createMediaPlayer()
+        }
     }
 }
