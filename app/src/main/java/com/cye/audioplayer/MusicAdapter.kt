@@ -1,9 +1,13 @@
 package com.cye.audioplayer
 
+import android.annotation.SuppressLint
+import android.app.DownloadManager.Request
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.cye.audioplayer.databinding.MusicViewBinding
 
 class MusicAdapter(private val context: Context, private var musicList: ArrayList<Music>)
@@ -21,10 +25,15 @@ class MusicAdapter(private val context: Context, private var musicList: ArrayLis
         return MyHolder(MusicViewBinding.inflate(LayoutInflater.from(context), parent, false))
     }
 
+    @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         holder.title.text = musicList[position].title
         holder.album.text = musicList[position].album
         holder.duration.text = musicList[position].duration.toString()
+        Glide.with(context)
+            .load(musicList[position])
+            .apply(RequestOptions().placeholder(R.drawable.music_player_icon_slash_screen).centerCrop())
+            .into(holder.image)
     }
 
     override fun getItemCount(): Int {
