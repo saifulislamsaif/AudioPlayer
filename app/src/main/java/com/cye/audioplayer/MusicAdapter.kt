@@ -37,7 +37,9 @@ class MusicAdapter(private val context: Context, private var musicList: ArrayLis
             .apply(RequestOptions().placeholder(R.drawable.music_player_icon_slash_screen).centerCrop())
             .into(holder.image)
         holder.root.setOnClickListener{
-            val intent = Intent(context,PlayListActivity::class.java)
+            val intent = Intent(context,PlayerActivity::class.java)
+            intent.putExtra("index",position)
+            intent.putExtra("class","MusicAdapter")
             ContextCompat.startActivity(context,intent,null)
         }
     }
