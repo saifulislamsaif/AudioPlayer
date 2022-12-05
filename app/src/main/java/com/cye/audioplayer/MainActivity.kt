@@ -32,11 +32,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestRuntimePermission()
         innitializeLayout()
-//        binding.shuffleBtn.setOnClickListener {
-//            Toast.makeText(this@MainActivity,"Button Clicked",Toast.LENGTH_SHORT).show()
-//        }
         binding.shuffleBtn.setOnClickListener {
-            val intent = Intent(this, PlayerActivity::class.java)
+            val intent = Intent(this@MainActivity, PlayerActivity::class.java)
+            intent.putExtra("index",0)
+            intent.putExtra("class", "MainActivity")
             startActivity(intent)
         }
         binding.favouriteBtn.setOnClickListener {
