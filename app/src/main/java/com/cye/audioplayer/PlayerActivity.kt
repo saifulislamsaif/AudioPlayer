@@ -129,6 +129,7 @@ class PlayerActivity : AppCompatActivity() ,ServiceConnection{
         var binder = service as MusicService.MyBinder
         musicService = binder.currentService()
         createMediaPlayer()
+        musicService!!.showNotification()
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
