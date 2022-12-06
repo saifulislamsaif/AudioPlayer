@@ -30,11 +30,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestRuntimePermission()
-        innitializeLayout()
+//        requestRuntimePermission()
+        setTheme(R.style.coolPink)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        toggle = ActionBarDrawerToggle(this, binding.root, R.string.open, R.string.close)
+        binding.root.addDrawerListener(toggle)
+        toggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        if (requestRuntimePermission())
+            initializeLayout()
         binding.shuffleBtn.setOnClickListener {
             val intent = Intent(this@MainActivity, PlayerActivity::class.java)
-            intent.putExtra("index",0)
+            intent.putExtra("index", 0)
             intent.putExtra("class", "MainActivity")
             startActivity(intent)
         }
@@ -87,6 +95,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == 13) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+                initializeLayout()
             } else
                 ActivityCompat.requestPermissions(
                     this,
@@ -102,16 +111,9 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun innitializeLayout() {
-        setTheme(R.style.MusicPlayer)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        toggle = ActionBarDrawerToggle(this, binding.root, R.string.open, R.string.close)
-        binding.root.addDrawerListener(toggle)
-        toggle.syncState()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    @SuppressLint("SetTextI18n")
+    private fun initializeLayout() {
         MusicListMA = getAllAudio()
-
         binding.musicRV.setHasFixedSize(true)
         binding.musicRV.setItemViewCacheSize(13)
         binding.musicRV.layoutManager = LinearLayoutManager(this)

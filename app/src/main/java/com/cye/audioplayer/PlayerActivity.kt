@@ -70,7 +70,7 @@ class PlayerActivity : AppCompatActivity() {
                 setLayout()
                 createMediaPlayer()
             }
-            "MainActivity"->{
+            "MainActivity" -> {
                 musicListPlA = ArrayList()
                 musicListPlA.addAll(MainActivity.MusicListMA)
                 musicListPlA.shuffle()
