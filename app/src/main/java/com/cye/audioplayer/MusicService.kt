@@ -1,7 +1,6 @@
 package com.cye.audioplayer
 
-import android.app.Application
-import android.app.Notification
+
 import android.app.Service
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -30,7 +29,7 @@ class MusicService : Service() {
         val notification = NotificationCompat.Builder(baseContext, ApplicationClass.Chanel_ID)
             .setContentTitle(PlayerActivity.musicListPlA[PlayerActivity.songPosition].title)
             .setContentText(PlayerActivity.musicListPlA[PlayerActivity.songPosition].artist)
-            .setSmallIcon(R.drawable.playlist_icon)
+            .setSmallIcon(R.drawable.music_icon)
             .setLargeIcon(
                 BitmapFactory.decodeResource(
                     resources,

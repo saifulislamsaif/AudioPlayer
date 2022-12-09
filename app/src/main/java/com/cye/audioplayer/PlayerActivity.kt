@@ -30,7 +30,7 @@ class PlayerActivity : AppCompatActivity() ,ServiceConnection{
         setTheme(R.style.MusicPlayer)
         binding = ActivityPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var intent = Intent(this,MusicService::class.java)
+        val intent = Intent(this,MusicService::class.java)
         bindService(intent,this, BIND_AUTO_CREATE)
         startService(intent)
         initializeLayout()
